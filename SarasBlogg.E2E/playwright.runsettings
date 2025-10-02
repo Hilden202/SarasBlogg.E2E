@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<EnvironmentVariables>
+			<PWDEBUG>1</PWDEBUG>
+			<!-- tvingar headed + Inspector -->
+		</EnvironmentVariables>
+	</RunConfiguration>
+
+	<Playwright>
+		<BrowserName>chromium</BrowserName>
+		<LaunchOptions>
+			<Headless>false</Headless>
+			<SlowMo>200</SlowMo>
+			<!-- <Channel>msedge</Channel>  // valfritt -->
+		</LaunchOptions>
+	</Playwright>
+
+	<TestRunParameters>
+		<Parameter name="BaseUrl" value="https://localhost:7130" />
+	</TestRunParameters>
+</RunSettings>

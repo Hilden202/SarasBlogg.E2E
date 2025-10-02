@@ -9,8 +9,18 @@ namespace SarasBlogg.E2E;
 [Parallelizable(ParallelScope.Self)]
 public class BasicTests : PageTest
 {
-    public override BrowserNewContextOptions ContextOptions()
-        => new() { IgnoreHTTPSErrors = true };
+
+    // Kör fint mot dev-cert + (valfritt) video/screenshot
+    public override BrowserNewContextOptions ContextOptions() => new()
+    {
+        IgnoreHTTPSErrors = true
+        // RecordVideoDir = "videos", // valfritt för felsökning
+        // RecordVideoSize = new() { Width = 1280, Height = 720 }
+    };
+
+
+    //public override BrowserNewContextOptions ContextOptions()
+    //    => new() { IgnoreHTTPSErrors = true };
 
     [Test, Category("Smoke"), Category("UI")]
     public async Task CookiePopup_Should_Disappear_WhenAccepted()
@@ -28,6 +38,7 @@ public class BasicTests : PageTest
     [Test, Category("Kontakt"), Category("Form")]
     public async Task ContactForm_Should_Save_WhenNotSpam()
     {
+        await Page.PauseAsync();   // öppnar Inspector – du ser allt live
         var baseUrl = TestContext.Parameters.Get("BaseUrl", "https://localhost:7130");
         await Page.GotoAsync(baseUrl + "/Contact");
 
